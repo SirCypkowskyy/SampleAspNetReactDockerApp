@@ -15,6 +15,9 @@ I recommend using this repository as a starter project for your fullstack applic
 <figcaption>Project's sequence graph</figcaption>
 </figure>
 
+<br />
+<br />
+
 <figure>
 <img src="static/AppGraph.png" alt="Project's main graph" />
 <figcaption>Project's main graph</figcaption>
