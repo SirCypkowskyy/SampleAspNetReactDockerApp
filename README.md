@@ -10,6 +10,16 @@ This project utilizes the .Net 8.0 SDK, React, and Docker to create a developmen
 
 I recommend using this repository as a starter project for your fullstack application, as it provides a good starting point for a .Net application with a React frontend, and it is configured to run as a collection of Docker containers, ready for development and production.
 
+<figure>
+<img src="static/SequenceGraph.png" alt="Project's sequence graph" />
+<figcaption>Project's sequence graph</figcaption>
+</figure>
+
+<figure>
+<img src="static/AppGraph.png" alt="Project's main graph" />
+<figcaption>Project's main graph</figcaption>
+</figure>
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
@@ -71,12 +81,24 @@ This will start the .Net application, the React-Vite application and the databas
   - [PostgreSQL](https://www.postgresql.org/)
   - [Npgsql](https://www.npgsql.org/)
   - [Swagger](https://swagger.io/)
+  - [Microsoft Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity)
+  - [AutoMapper](https://automapper.org/)
+  - [FluentValidation](https://fluentvalidation.net/)
+  - [Serilog](https://serilog.net/)
 - Frontend
   - [React](https://reactjs.org/)
   - [Vite](https://vitejs.dev/)
   - [Tailwind CSS](https://tailwindcss.com/)
+  - [Zustand](https://github.com/pmndrs/zustand)
+  - [Shadcn](https://shadcn.com/)
+  - [React Router](https://reactrouter.com/)
+  - [RadixUI](https://radix-ui.com/)
+  - [i18next](https://www.i18next.com/)
+  - [Lucide Icons](https://lucide.netlify.app/)
+  - [React World Flags](https://www.npmjs.com/package/react-world-flags)
 - [Docker](https://www.docker.com/)
 - [Nginx](https://www.nginx.com/)
+- [PostgreSQL](https://www.postgresql.org/)
 
 ## Authors
 
