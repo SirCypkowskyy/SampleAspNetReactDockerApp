@@ -10,12 +10,13 @@ services:
       POSTGRES_DB: SampleDriverDb
       TZ: Europe/Warsaw
     ports:
-      - "${POSTGRES_PORT}:5432"
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
+    command: -p "${POSTGRES_PORT}"
     restart: always
     volumes:
       - app_data:/var/lib/postgresql/data
     networks:
-      - dev
+      - appnet
   # Backend of the application (ASP.NET Core)
   app-api:
     build:
@@ -23,10 +24,17 @@ services:
       dockerfile: Dockerfile
     ports:
       - "${ASPNETCORE_APP_PORT}:${ASPNETCORE_APP_PORT}"
+    environment:
+        ASPNETCORE_ENVIRONMENT: "PRODUCTION"
+        ASPNETCORE_APP_DB: "${ASPNETCORE_APP_DB}"
+        ASPNETCORE_SHOW_SWAGGER_IN_PRODUCTION: "${ASPNETCORE_SHOW_SWAGGER_IN_PRODUCTION}"
+        ASPNETCORE_APP_PORT: "${ASPNETCORE_APP_PORT}"
+        CLIENT_APP_PORTS: "${CLIENT_APP_PORTS}"
+        POSTGRES_PORT: "${POSTGRES_PORT}"
     depends_on:
       - app-db
     networks:
-      - dev
+      - appnet
   # Frontend of the application (React-Vite)
   app-client:
     build:
@@ -34,13 +42,19 @@ services:
       dockerfile: Dockerfile
     ports:
       - "${CLIENT_APP_PORTS}"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "PRODUCTION"
+      ASPNETCORE_APP_DB: "${ASPNETCORE_APP_DB}"
+      ASPNETCORE_SHOW_SWAGGER_IN_PRODUCTION: "${ASPNETCORE_SHOW_SWAGGER_IN_PRODUCTION}"
+      ASPNETCORE_APP_PORT: "${ASPNETCORE_APP_PORT}"
+      CLIENT_APP_PORTS: "${CLIENT_APP_PORTS}"
     depends_on:
       - app-api
     networks:
-      - dev
+      - appnet
 volumes:
   app_data:
 
 networks:
-  dev:
+  appnet:
     driver: bridge

@@ -1,5 +1,5 @@
 ﻿import {ReactElement} from "react";
-import Navbar from "@/components/Navbar.tsx";
+import Navbar from "@/components/navbar.tsx";
 import {Outlet} from "react-router-dom";
 
 export function Layout(): ReactElement {

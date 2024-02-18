@@ -1,7 +1,5 @@
 using System.Reflection;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Versioning.Conventions;
+using Asp.Versioning;
 using Microsoft.OpenApi.Models;
 using SampleAspNetReactDockerApp.Server.Data;
 using SampleAspNetReactDockerApp.Server.Helpers;
@@ -56,7 +54,7 @@ namespace SampleAspNetReactDockerApp.Server
                     Type = SecuritySchemeType.ApiKey,
                     Description = "Please enter into field the word 'Bearer' following by space and JWT"
                 });
-                
+
                 opts.OperationFilter<SecurityRequirementsOperationFilter>();
 
                 // Add XML comments to Swagger
@@ -75,7 +73,7 @@ namespace SampleAspNetReactDockerApp.Server
                 opts.DefaultApiVersion = new ApiVersion(1, 0);
                 opts.AssumeDefaultVersionWhenUnspecified = true;
                 opts.ReportApiVersions = true;
-                opts.Conventions.Add(new VersionByNamespaceConvention());
+                opts.ApiVersionReader = new UrlSegmentApiVersionReader();
             });
 
             // Add CORS
@@ -91,8 +89,16 @@ namespace SampleAspNetReactDockerApp.Server
                 }
                 else
                 {
+                    var allowedOriginPorts = Global.AccessAppEnvironmentVariable(AppEnvironmentVariables.ClientAppPorts)
+                        .Split(":");
+
+                    var possibleHttpsOrigins = allowedOriginPorts.Select(port => $"https://localhost:{port}").ToArray();
+                    var possibleHttpOrigins = allowedOriginPorts.Select(port => $"http://localhost:{port}").ToArray();
+
                     options.AddDefaultPolicy(corsBuilder =>
-                        corsBuilder.WithOrigins("https://localhost:5001").AllowAnyMethod().AllowAnyHeader());
+                        corsBuilder.WithOrigins(possibleHttpsOrigins
+                                .Concat(possibleHttpOrigins).ToArray())
+                            .AllowAnyMethod().AllowAnyHeader());
                 }
             });
 
@@ -149,7 +155,9 @@ namespace SampleAspNetReactDockerApp.Server
                 app.UseSwaggerUI();
             }
 
-            app.MapGroup($"/api/auth").MapIdentityApi<AppUserEntity>();
+
+            app.MapGroup("/api/auth/v1")
+                .MapIdentityApi<AppUserEntity>();
 
             app.UseCors();
 

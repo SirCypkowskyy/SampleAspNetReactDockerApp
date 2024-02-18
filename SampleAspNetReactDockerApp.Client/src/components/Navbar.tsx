@@ -1,37 +1,60 @@
 ﻿import {ReactElement} from "react";
-import useThemeStore from "@/store/themeStore.ts";
+import {ModeToggle} from "@/components/mode-toggle.tsx";
+import {cn} from "@/lib/utils.ts";
+import LangToggle from "@/components/lang-toggle.tsx";
+import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
 
 /**
  * Navbar component
  */
-export default function Navbar(): ReactElement {
-    
-    const { theme, setTheme } = useThemeStore();
-    const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
+export default function Navbar(
+    {
+        className = "",
+    }
+): ReactElement {
+
+    const { t } = useTranslation();
 
     return (
+        <div className={cn(className)}>
         <nav className="bg-background text-foreground p-4">
             <div className="container mx-auto flex justify-between items-center">
                 <div className="text-lg font-bold">
-                    <a href="/" className="hover:text-primary">Brand</a>
+                    <a href="/" className="hover:text-primary">
+                        {t("app.title")}
+                    </a>
                 </div>
-                <ul className="flex space-x-4">
+                <ul className="flex space-x-5 mt-4">
                     <li>
-                        <a href="/about" className="hover:text-primary">About</a>
+                        <Link to="/about" className="hover:text-primary">
+                            {t("navbar.about")}
+                        </Link>
                     </li>
                     <li>
-                        <a href="/services" className="hover:text-primary">Services</a>
+                        <Link to="/login" className="hover:text-primary">
+                            {t("navbar.login")}
+                        </Link>
                     </li>
                     <li>
-                        <a href="/contact" className="hover:text-primary">Contact</a>
+                        <Link to="/register" className="hover:text-primary">
+                            {t("navbar.register")}
+                        </Link>
                     </li>
                     <li>
-                        <button onClick={toggleTheme} className="py-2 px-4 bg-primary text-primary-foreground rounded-md bg-primary">
-                            {theme === 'light' ? 'Dark' : 'Light'} Theme
-                        </button>
+                        <Link to="/contact" className="hover:text-primary">
+                            {t("navbar.contact")}
+                        </Link>
+                    </li>
+                    <li>
+                        <ModeToggle className={cn("h-8 w-8")} />
+                    </li>
+                    <li>
+                        <LangToggle className={cn("h-8")} />
                     </li>
                 </ul>
             </div>
         </nav>
+        </div>
     );
 }

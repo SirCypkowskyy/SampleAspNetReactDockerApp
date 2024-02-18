@@ -2,11 +2,14 @@ import {fileURLToPath, URL} from 'node:url';
 
 import {defineConfig, ProxyOptions} from 'vite';
 import plugin from '@vitejs/plugin-react';
+import mkcert from "vite-plugin-mkcert";
+import https from "https";
+
 
 // import fs from 'fs';
 // import path from 'path';
 // import child_process from 'child_process';
-
+//
 // const baseFolder =
 //     process.env.APPDATA !== undefined && process.env.APPDATA !== ''
 //         ? `${process.env.APPDATA}/ASP.NET/https`
@@ -38,7 +41,7 @@ import plugin from '@vitejs/plugin-react';
 // }
 
 const possibleBackendUrls: string[] = process.env.ASPNETCORE_URLS ?
-    process.env.ASPNETCORE_URLS.split(',') :
+    process.env.ASPNETCORE_URLS.split(';') :
     ["http://localhost:5136"];
 
 const aspNetCore_environment: string = process.env.ASPNETCORE_ENVIRONMENT || "Development";
@@ -46,26 +49,52 @@ const aspNetCore_environment: string = process.env.ASPNETCORE_ENVIRONMENT || "De
 // The application was designed so that the swagger UI is only shown in development mode or when the ASPNETCORE_SHOW_SWAGGER_IN_PRODUCTION environment variable is set to true.
 const aspNetCore_shouldShowSwaggerInProduction: boolean = process.env.ASPNETCORE_SHOW_SWAGGER_IN_PRODUCTION === "true";
 
-const backendUrl: string = possibleBackendUrls[0];
+const backendUrl: string = possibleBackendUrls.find(url => url.startsWith("https")) || possibleBackendUrls[0];
+console.log(`Backend URL: ${backendUrl}`);
 
-let serverProxies : Record<string, ProxyOptions> = {
-    "/api": {
-        target: backendUrl,
-    },
-};
+const runAsHttps: boolean = backendUrl.startsWith("https");
+
+const httpsAgent = new https.Agent({
+    rejectUnauthorized: false // This will ignore certificate errors
+});
+
+
+let serverProxies: Record<string, ProxyOptions> =
+    runAsHttps ?
+        {
+            "/api": {
+                target: backendUrl,
+                agent: httpsAgent
+            }
+        }
+        : 
+        {
+            "/api": {
+                target: backendUrl,
+            },
+        }
 
 if (aspNetCore_environment === "Development" || aspNetCore_shouldShowSwaggerInProduction) {
-    serverProxies = {
+    serverProxies = runAsHttps ? {
         ...serverProxies,
         "/swagger": {
             target: backendUrl,
+            agent: httpsAgent
         },
-    };
+    } 
+    : {
+            ...serverProxies,
+            "/swagger": {
+                target: backendUrl,
+            },
+        
+        }
 }
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [plugin()],
+    plugins: [plugin(), mkcert()],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))

@@ -1,0 +1,22 @@
+﻿{
+  "translation": {
+    "app.title": "Demonstracyjna aplikacja Asp.Net Core - React Docker",
+    "navbar.about": "O nas",
+    "navbar.login": "Zaloguj się",
+    "navbar.register": "Zarejestruj się",
+    "navbar.logout": "Wyloguj się",
+    "navbar.profile": "Profil",
+    "navbar.contact": "Kontakt",
+    "home.hero.title": "Witaj w demonstracyjnej aplikacji \n Asp.Net Core - React Docker",
+    "home.hero.subtitle": "Jest to projekt przykładowej aplikacji wykorzystującej Asp.Net Core, React i Docker w środowisku developerskim i do produkcji.",
+    "home.features.title": "Funkcjonalności",
+    "home.features.ease.title": "Łatwość konfiguracji 📤",
+    "home.features.ease.description": "Dzięki szablonowi SampleAspNetReactDockerApp, możesz łatwo skonfigurować nowy projekt z wstępnie skonfigurowanymi Asp.Net Core, React i Docker.",
+    "home.features.consistency.title": "Spójne środowisko programistyczne dla rozwoju i produkcji📋",
+    "home.features.consistency.description": "Dzięki Dockerowi, możesz łatwo ustawić środowisko deweloperskie, które jest spójne na różnych maszynach, gotowe na rozwój i produkcję.",
+    "home.features.npm.title": "React z dodatkowymi pakietami npm🗂️",
+    "home.features.npm.description": "Ten szablon zawiera dodatkowe pakiety npm takie jak react-router-dom, tailwindcss, zustand, i18next i więcej, aby pomóc Ci rozpocząć pracę nad projektem.",
+    "home.login": "Zaloguj się z emailem",
+    "home.register": "Zarejestruj się z emailem"
+  }
+}

@@ -1,0 +1,22 @@
+﻿{
+  "translation": {
+    "app.title": "Sample Asp.Net Core - React Docker App",
+    "navbar.about": "About",
+    "navbar.login": "Login",
+    "navbar.register": "Register",
+    "navbar.logout": "Logout",
+    "navbar.profile": "Profile",
+    "navbar.contact": "Contact",
+    "home.hero.title": "Welcome to Sample Asp.Net Core - React Docker\n Application",
+    "home.hero.subtitle": "This is a sample app using Asp.Net Core, React, and Docker for development and production.",
+    "home.features.title": "Features",
+    "home.features.ease.title": "Ease of setup 📤",
+    "home.features.ease.description": "With SampleAspNetReactDockerApp template, you can easily set up a new project with pre-configured Asp.Net Core, React, and Docker.",
+    "home.features.consistency.title": "Consistent Development Environment for development and production📋",
+    "home.features.consistency.description": "With Docker, you can easily set up a development environment that is consistent across different machines, ready for development and production.",
+    "home.features.npm.title": "React with extra npm packages🗂️",
+    "home.features.npm.description": "This template comes with extra npm packages like react-router-dom, tailwindcss, zustand, i18next, and more, to help you get started with your project.",
+    "home.login": "Login with Email",
+    "home.register": "Register with Email"
+  }
+}

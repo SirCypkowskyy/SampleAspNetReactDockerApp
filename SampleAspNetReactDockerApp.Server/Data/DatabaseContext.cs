@@ -9,19 +9,23 @@ namespace SampleAspNetReactDockerApp.Server.Data;
 /// </summary>
 public class DatabaseContext : IdentityDbContext<AppUserEntity>
 {
+    private readonly ILogger<DatabaseContext> _logger;
+    
     /// <summary>
     /// The constructor for the database context.
     /// </summary>
     /// <param name="options"></param>
-    public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
+    public DatabaseContext(DbContextOptions<DatabaseContext> options, ILogger<DatabaseContext> logger) : base(options)
     {
-        
+        _logger = logger;
     }
 
     /// <inheritdoc />
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(Global.AccessAppEnvironmentVariable(AppEnvironmentVariables.AppDb));
+        var connectionString = Global.AccessAppEnvironmentVariable(AppEnvironmentVariables.AppDb);
+        _logger.LogInformation($"Database connection string: {connectionString}");
+        optionsBuilder.UseNpgsql(connectionString);
     }
 
     /// <inheritdoc />

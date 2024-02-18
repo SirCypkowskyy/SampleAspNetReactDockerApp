@@ -1,0 +1,57 @@
+﻿{
+  "$schema": "https://json.schemastore.org/template",
+  "author": "Cyprian Gburek",
+  "classifications": [
+    "Web",
+    "Vite.js",
+    "React"
+  ],
+  "identity": "SampleAspNetReactDockerApp",
+  "name": "Sample ASP.NET Core - Vite React Docker Project Template",
+  "shortname": "s-aspnet-react-docker-app",
+  "sourceName": "SampleAspNetReactDockerApp",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "preferNameDirectory": true,
+  "symbols": {
+    "Framework": {
+      "type": "parameter",
+      "description": "The target framework for the project",
+      "datatype": "choice",
+      "choices": [
+        "net6.0",
+        "net7.0",
+        "net8.0"
+      ],
+      "default": "net8.0",
+      "replaces": "{TargetFramework}"
+    }
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            ".git/",
+            ".github/",
+            ".vscode/",
+            ".idea/",
+            ".vs/",
+            "node_modules/",
+            "obj/",
+            "bin/",
+            "dist/",
+            "build/",
+            "out/",
+            "coverage/",
+            "temp/",
+            "tmp/",
+            "logs/"
+          ]
+        }
+      ]
+    }
+  ]
+}
