@@ -1,0 +1,6 @@
+@SampleAspNetReactDockerApp.Server_HostAddress = http://localhost:5136
+
+GET {{SampleAspNetReactDockerApp.Server_HostAddress}}/api/V1.0/weatherforecast/
+Accept: application/json
+
+###

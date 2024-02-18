@@ -1,0 +1,46 @@
+﻿version: "3.8"
+
+services:
+  # Database of the application (Postgres)
+  app-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: SampleDriverDb
+      TZ: Europe/Warsaw
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    restart: always
+    volumes:
+      - app_data:/var/lib/postgresql/data
+    networks:
+      - dev
+  # Backend of the application (ASP.NET Core)
+  app-api:
+    build:
+      context: ./SampleAspNetReactDockerApp.Server
+      dockerfile: Dockerfile
+    ports:
+      - "${ASPNETCORE_APP_PORT}:${ASPNETCORE_APP_PORT}"
+    depends_on:
+      - app-db
+    networks:
+      - dev
+  # Frontend of the application (React-Vite)
+  app-client:
+    build:
+      context: ./SampleAspNetReactDockerApp.Client
+      dockerfile: Dockerfile
+    ports:
+      - "${CLIENT_APP_PORTS}"
+    depends_on:
+      - app-api
+    networks:
+      - dev
+volumes:
+  app_data:
+
+networks:
+  dev:
+    driver: bridge
