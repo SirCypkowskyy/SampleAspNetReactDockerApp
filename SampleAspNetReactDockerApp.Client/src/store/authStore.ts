@@ -41,8 +41,9 @@ interface AuthActions {
     setUser: (user: User) => void;
     clearUser: () => void;
     setLoginStatus: (status: 'authenticated' | 'unauthenticated' | 'pending') => void;
-    login: (request: paths["/api/auth/v1/login"]["post"]["requestBody"]["content"]["application/json"]) => Promise<void>;
+    login: (request: paths["/api/auth/v1/login"]["post"]["requestBody"]["content"]["application/json"]) => Promise<{successful : boolean, response : string | null}>;
     signIn: (token: string) => Promise<void>;
+    register: (email: string, password: string) => Promise<{ successful : boolean, response : string | null }>;
     logout: () => void;
     hydrate: () => Promise<void>;
 }
@@ -71,7 +72,6 @@ const useAuthStore = create<AuthStore>()(
             clearUser: () => set({user: null}),
             setLoginStatus: (status) => set({loginStatus: status}),
             login: async (request: paths["/api/auth/v1/login"]["post"]["requestBody"]["content"]["application/json"]) => {
-                console.log("login request: ", request);
 
                 const response = await fetch("api/auth/v1/login", {
                     method: 'POST',
@@ -80,15 +80,13 @@ const useAuthStore = create<AuthStore>()(
                 });
 
                 if (response.ok) {
-                    console.log("Login successful");
                     const responseData: paths["/api/auth/v1/login"]["post"]["responses"]["200"]["content"]["application/json"] = await response.json();
                     get().setTokens(responseData.accessToken || "", responseData.refreshToken || "");
-                    // setAuthToken(responseData.accessToken || "");
-                    // setRefreshToken(responseData.refreshToken || "");
                     get().setLoginStatus('authenticated');
-                    console.log("Login status: ", get().loginStatus);
+                    return { successful: true, response: null };
                 } else {
                     get().setLoginStatus('unauthenticated');
+                    return { successful: false, response: await response.text() };
                 }
             },
             signIn: async (token) => {
@@ -100,11 +98,9 @@ const useAuthStore = create<AuthStore>()(
                 if (response.ok) {
                     const {accessToken, refreshToken} = await response.json();
                     get().setTokens(accessToken, refreshToken);
-                    // setAuthToken(accessToken);
-                    // setRefreshToken(refreshToken);
                     get().setLoginStatus('authenticated');
                 } else {
-                    const refreshToken = localStorage.getItem('refreshToken');
+                    const refreshToken = get().refreshToken;
                     if (refreshToken === null) {
                         get().setLoginStatus('unauthenticated');
                         return;
@@ -118,8 +114,6 @@ const useAuthStore = create<AuthStore>()(
                     if (response.ok) {
                         const {accessToken, refreshToken} = await response.json();
                         get().setTokens(accessToken, refreshToken);
-                        // setAuthToken(accessToken);
-                        // setRefreshToken(refreshToken);
                         get().setLoginStatus('authenticated');
                     } else {
                         get().setLoginStatus('unauthenticated');
@@ -135,7 +129,7 @@ const useAuthStore = create<AuthStore>()(
             },
             hydrate: async () => {
                 try {
-                    const userToken = localStorage.getItem('userToken');
+                    const userToken = get().accessToken;
                     if (userToken !== null) {
                         await get().signIn(userToken);
                     } else {
@@ -144,6 +138,16 @@ const useAuthStore = create<AuthStore>()(
                 } catch (e) {
                     console.error(e);
                 }
+            },
+            register: async (email, password) => {
+                const response = await fetch("api/auth/v1/register", {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({email, password})
+                });
+                
+                const responseCode = response.status;
+                return responseCode === 200 ? { successful: true, response: null } : { successful: false, response: await response.text() };
             }
         }),
         {

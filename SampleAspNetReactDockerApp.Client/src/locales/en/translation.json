@@ -21,6 +21,22 @@
     "home.register": "Register with Email",
     "dashboard.title": "Dashboard with sample data",
     "dashboard.subtitle": "This is a dashboard with sample data, only available to logged in users.",
-    "dashboard.table.title": "Weather Forecast Table"
+    "dashboard.table.title": "Weather Forecast Table",
+    "contact": {
+      "title": "Contact Me",
+      "description": "Feel free to reach out if you have any questions.",
+      "email": "Email me at",
+      "github": "Check my GitHub"
+    },
+    "about": {
+      "title": "About the Project",
+      "description": "This project is a sample .Net 8.0 web API with React and Docker support project for demonstration purposes and as a starting point for a fullstack application. It demonstrates the use of .Net 8.0 SDK, React, Docker, and Nginx for creating a development and production environment for web applications.",
+      "featuresTitle": "Key Features",
+      "techStackTitle": "Technology Stack",
+      "authorTitle": "Author",
+      "authorName": "Cyprian Gburek",
+      "githubProfile": "Check my GitHub",
+      "email": "Email me"
+    }
   }
 }

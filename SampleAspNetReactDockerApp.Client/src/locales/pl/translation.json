@@ -14,13 +14,29 @@
     "home.features.ease.title": "Łatwość konfiguracji 📤",
     "home.features.ease.description": "Dzięki szablonowi SampleAspNetReactDockerApp, możesz łatwo skonfigurować nowy projekt z wstępnie skonfigurowanymi Asp.Net Core, React i Docker.",
     "home.features.consistency.title": "Spójne środowisko programistyczne dla rozwoju i produkcji📋",
-    "home.features.consistency.description": "Dzięki Dockerowi, możesz łatwo ustawić środowisko deweloperskie, które jest spójne na różnych maszynach, gotowe na rozwój i produkcję.",
+    "home.features.consistency.description": "Dzięki Dockerowi, możesz łatwo ustawić środowisko deweloperskie, które jest spójne na różnych maszynach, gotowe do rozwoju i na produkcję.",
     "home.features.npm.title": "React z dodatkowymi pakietami npm🗂️",
     "home.features.npm.description": "Ten szablon zawiera dodatkowe pakiety npm takie jak react-router-dom, tailwindcss, zustand, i18next i więcej, aby pomóc Ci rozpocząć pracę nad projektem.",
     "home.login": "Zaloguj się z emailem",
     "home.register": "Zarejestruj się z emailem",
     "dashboard.title": "Panel z danymi testowymi",
     "dashboard.subtitle": "To jest panel z danymi testowymi, który jest dostępny tylko dla zalogowanych użytkowników.",
-    "dashboard.table.title": "Tabela Prognozy Pogody"
+    "dashboard.table.title": "Tabela Prognozy Pogody",
+    "contact": {
+      "title": "Skontaktuj się ze mną",
+      "description": "Skontaktuj się ze mną, jeśli masz jakiekolwiek pytania.",
+      "email": "Napisz do mnie na",
+      "github": "Sprawdź mojego GitHuba"
+    },
+    "about": {
+      "title": "O projekcie",
+      "description": "Ten projekt jest przykładowym projektem .Net 8.0 web API z wsparciem React i Docker, stworzonym w celach demonstracyjnych oraz jako punkt wyjścia dla aplikacji fullstack. Demonstruje użycie .Net 8.0 SDK, React, Docker oraz Nginx do stworzenia środowiska deweloperskiego i produkcyjnego dla aplikacji.",
+      "featuresTitle": "Kluczowe funkcje",
+      "techStackTitle": "Stos technologiczny",
+      "authorTitle": "Autor",
+      "authorName": "Cyprian Gburek",
+      "githubProfile": "Sprawdź mojego GitHuba",
+      "email": "Napisz do mnie"
+    }
   }
 }
