@@ -37,7 +37,7 @@ type ThemeStore = ThemeState & ThemeActions;
  * @example <button onClick={() => setTheme("dark")}>Dark</button>
  */
 const useThemeStore = create<ThemeStore>((set) => ({
-    theme: "light",
+    theme: localStorage.getItem("vite-ui-theme") as Theme || "system",
     storageKey: "vite-ui-theme",
     setTheme: (theme) => {
         const root = document.documentElement;

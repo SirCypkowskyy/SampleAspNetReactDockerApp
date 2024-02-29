@@ -7,6 +7,7 @@
     "navbar.logout": "Wyloguj się",
     "navbar.profile": "Profil",
     "navbar.contact": "Kontakt",
+    "navbar.dashboard": "Panel",
     "home.hero.title": "Witaj w demonstracyjnej aplikacji \n Asp.Net Core - React Docker",
     "home.hero.subtitle": "Jest to projekt przykładowej aplikacji wykorzystującej Asp.Net Core, React i Docker w środowisku developerskim i do produkcji.",
     "home.features.title": "Funkcjonalności",
@@ -17,6 +18,9 @@
     "home.features.npm.title": "React z dodatkowymi pakietami npm🗂️",
     "home.features.npm.description": "Ten szablon zawiera dodatkowe pakiety npm takie jak react-router-dom, tailwindcss, zustand, i18next i więcej, aby pomóc Ci rozpocząć pracę nad projektem.",
     "home.login": "Zaloguj się z emailem",
-    "home.register": "Zarejestruj się z emailem"
+    "home.register": "Zarejestruj się z emailem",
+    "dashboard.title": "Panel z danymi testowymi",
+    "dashboard.subtitle": "To jest panel z danymi testowymi, który jest dostępny tylko dla zalogowanych użytkowników.",
+    "dashboard.table.title": "Tabela Prognozy Pogody"
   }
 }

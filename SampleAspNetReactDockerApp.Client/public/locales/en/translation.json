@@ -7,6 +7,7 @@
     "navbar.logout": "Logout",
     "navbar.profile": "Profile",
     "navbar.contact": "Contact",
+    "navbar.dashboard": "Dashboard",
     "home.hero.title": "Welcome to Sample Asp.Net Core - React Docker\n Application",
     "home.hero.subtitle": "This is a sample app using Asp.Net Core, React, and Docker for development and production.",
     "home.features.title": "Features",
@@ -17,6 +18,9 @@
     "home.features.npm.title": "React with extra npm packages🗂️",
     "home.features.npm.description": "This template comes with extra npm packages like react-router-dom, tailwindcss, zustand, i18next, and more, to help you get started with your project.",
     "home.login": "Login with Email",
-    "home.register": "Register with Email"
+    "home.register": "Register with Email",
+    "dashboard.title": "Dashboard with sample data",
+    "dashboard.subtitle": "This is a dashboard with sample data, only available to logged in users.",
+    "dashboard.table.title": "Weather Forecast Table"
   }
 }

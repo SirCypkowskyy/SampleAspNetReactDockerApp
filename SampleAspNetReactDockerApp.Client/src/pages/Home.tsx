@@ -3,10 +3,11 @@ import {Button} from "@/components/ui/button.tsx";
 import {Card, CardDescription, CardHeader, CardTitle} from "@/components/ui/card.tsx";
 import {EnvelopeOpenIcon} from "@radix-ui/react-icons"
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
 
 export function Home(): ReactElement {
-    const { t } = useTranslation();
-    
+    const {t} = useTranslation();
+
     return (
         <div className="flex flex-col justify-center h-[70%]">
             {/* Hero Section */}
@@ -62,14 +63,18 @@ export function Home(): ReactElement {
 
             {/* Register Section */}
             <section className="container mt-20 flex-col items-center text-center" id="register-section">
+                <Link to="/login">
+                    <Button size="lg" variant="outline" className="px-4 mx-2">
+                        <EnvelopeOpenIcon className="mr-2 h-4 w-4"/> {t("home.login")}
+                    </Button>
+                </Link>
 
-                <Button size="lg" variant="outline" className="px-4 mx-2">
-                    <EnvelopeOpenIcon className="mr-2 h-4 w-4"/> {t("home.login")}
-                </Button>
-
-                <Button size="lg" variant="outline" className="px-4 mx-2">
-                    <EnvelopeOpenIcon className="mr-2 h-4 w-4"/> {t("home.register")}
-                </Button>
+                <Link to="/register">
+                    <Button size="lg" variant="outline" className="px-4 mx-2">
+                        <EnvelopeOpenIcon className="mr-2 h-4 w-4"/> {t("home.register")}
+                    </Button>
+                </Link>
+                    
             </section>
 
         </div>

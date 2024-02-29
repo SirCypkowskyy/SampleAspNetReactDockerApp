@@ -33,7 +33,7 @@ type LangStore = LangState & LangActions;
  * @example <button onClick={() => setLang("pl")}>Polish</button>
  */
 const useLangStore = create<LangStore>((set) => ({
-    lang: "en",
+    lang: localStorage.getItem("i18nextLng") as Lang || "system",
     storageKey: "i18nextLng",
     setLang: (lang) => {
         const root = document.documentElement;

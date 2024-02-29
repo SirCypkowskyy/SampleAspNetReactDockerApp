@@ -24,7 +24,6 @@ public class DatabaseContext : IdentityDbContext<AppUserEntity>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         var connectionString = Global.AccessAppEnvironmentVariable(AppEnvironmentVariables.AppDb);
-        _logger.LogInformation($"Database connection string: {connectionString}");
         optionsBuilder.UseNpgsql(connectionString);
     }
 

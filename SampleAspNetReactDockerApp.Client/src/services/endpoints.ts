@@ -34,7 +34,7 @@ export interface paths {
           useSessionCookies?: boolean;
         };
       };
-      requestBody?: {
+      requestBody: {
         content: {
           "application/json": components["schemas"]["LoginRequest"];
         };
